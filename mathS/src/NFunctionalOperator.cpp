@@ -1,4 +1,4 @@
-#include <NFunctionalOperator.h>
+#include "NFunctionalOperator.h"
 
 using namespace mathS;
 using namespace mathS::NMath;

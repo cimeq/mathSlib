@@ -1,4 +1,4 @@
-#include <NMathObject.h>
+#include "NMathObject.h"
 #include <string>
 
 using namespace mathS;

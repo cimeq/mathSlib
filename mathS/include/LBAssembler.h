@@ -1,10 +1,10 @@
 #pragma once
 
-#include<MathObject.h>
-#include<NMathObject.h>
-#include<NFunction.h>
-#include<NFunctionalOperator.h>
-#include<map>
+#include "MathObject.h"
+#include "NMathObject.h"
+#include "NFunction.h"
+#include "NFunctionalOperator.h"
+#include <map>
 /*
 	In this file, we introduce methods that use lambda expression to
 	assemble a NMathFunction(numeric math function) with given MathObject.

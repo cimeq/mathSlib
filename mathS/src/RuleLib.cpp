@@ -1,5 +1,5 @@
-#include <RuleLib.h>
-#include <ConstantEvaluate.h>
+#include "RuleLib.h"
+#include "ConstantEvaluate.h"
 
 bool mathS::RuleLib::VectorMultiply(Ptr<MathObject> obj, Ptr<MathObject>& rst)
 {

@@ -1,5 +1,5 @@
-#include<NFunction.h>
-#include<ExtendedCMath.h>
+#include "NFunction.h"
+#include "ExtendedCMath.h"
 
 using namespace mathS;
 using namespace mathS::NMath;

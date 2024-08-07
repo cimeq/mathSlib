@@ -2,10 +2,10 @@
 //
 
 #include <iostream>
-#include <MathParser.h>
-#include <LBAssembler.h>
-#include <Rule.h>
-#include <Evaluate.h>
+#include "MathParser.h"
+#include "LBAssembler.h"
+#include "Rule.h"
+#include "Evaluate.h"
 
 using namespace mathS;
 

@@ -1,6 +1,6 @@
-#include <MathParser.h>
+#include "MathParser.h"
 #include <stack>
-#include <string-switch.h>
+#include "string-switch.h"
 
 using namespace mathS;
 

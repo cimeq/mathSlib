@@ -1,6 +1,6 @@
-#include <Evaluate.h>
-#include <MathParser.h>
-#include <RuleLib.h>
+#include "Evaluate.h"
+#include "MathParser.h"
+#include "RuleLib.h"
 
 using namespace mathS;
 
