@@ -1,4 +1,4 @@
-#include <LBAssembler.h>
+#include "LBAssembler.h"
 
 using namespace mathS;
 using namespace mathS::NMath;

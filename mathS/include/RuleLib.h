@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Rule.h>
+#include "Rule.h"
 
 namespace mathS {
 	// 规则库，在这里可以写包括直接生成的规则，或是必须要程序进行的规则
