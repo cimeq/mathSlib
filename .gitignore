@@ -360,3 +360,4 @@ MigrationBackup/
 /CMakeLists.txt
 /cmake-build-debug/
 /.idea
+/build

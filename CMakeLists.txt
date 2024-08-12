@@ -1,32 +1,51 @@
-cmake_minimum_required(VERSION 3.13)
-project(mathS)
+cmake_minimum_required(VERSION 3.14)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-set(SHARED OFF)
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+project(MathS VERSION 2.2.0)
 
-add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
-add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
+#Set Version
+message(STATUS "Compiling Version: ${${PROJECT_NAME}_VERSION} of project ${PROJECT_NAME}")
 
-include_directories(
-        mathS/include
-)
-AUX_SOURCE_DIRECTORY(mathS/src DIR_SRCS)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE BOOL "export the build rules into a JSON files for clang-tidy" FORCE)
 
-add_executable(mathS mathS/include/LBAssembler.h mathS/include/MathObject.h mathS/include/MathParser.h
-        mathS/include/NMathObject.h
-        mathS/include/Rule.h
-        mathS/include/RuleLib.h
-        mathS/include/NFunction.h
-        mathS/include/NFunctionalOperator.h
-        mathS/include/ExtendedCMath.h
-        mathS/include/Compute.h
-        mathS/src/LBAssembler.cpp mathS/src/MathObject.cpp mathS/src/MathParser.cpp
-        mathS/src/NMathObject.cpp
-        mathS/src/NFunction.cpp
+#If the library is interface only use the keywork INTERFACE. If the library contain cpp files, use STATIC
+add_library(${PROJECT_NAME} STATIC EXCLUDE_FROM_ALL
+        mathS/src/Evaluate.cpp
         mathS/src/ExtendedCMath.cpp
+        mathS/src/LBAssembler.cpp
+        mathS/src/lexer.cpp
+        mathS/src/MathObject.cpp
+        mathS/src/MathParser.cpp
+        mathS/src/NFunction.cpp
+        mathS/src/NFunctionalOperator.cpp
+        mathS/src/NMathObject.cpp
         mathS/src/Rule.cpp
         mathS/src/RuleLib.cpp
-        mathS/src/Compute.cpp
-        mathS/src/NFunctionalOperator.cpp
-        mathS/src/main.cpp mathS/src/lexer.cpp mathS/include/lexer.h)
+        mathS/src/string-switch.cpp
+        )
+#adding a namespace for the library
+add_library(CIMEQ_Libraries::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
+target_include_directories( ${PROJECT_NAME}
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/mathS/include
+        )
+
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+target_compile_definitions(${PROJECT_NAME}
+        PUBLIC
+        USE_NEWLIB
+        )
+
+target_compile_options(${PROJECT_NAME}
+        PRIVATE
+        "-Wno-unused-parameter"
+        "-Os"
+        )
+
+get_target_property(_TARGET_TYPE ${PROJECT_NAME} TYPE)
+if(_TARGET_TYPE STREQUAL "INTERFACE_LIBRARY")
+    set_target_properties(${PROJECT_NAME} PROPERTIES INTERFACE_VERSION ${PROJECT_VERSION} )
+else()
+    set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION} )
+endif()
